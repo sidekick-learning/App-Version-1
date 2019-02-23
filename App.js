@@ -4,7 +4,7 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
 //hello world app
-
+//This is Matthew's change
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,

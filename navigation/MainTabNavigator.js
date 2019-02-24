@@ -3,15 +3,15 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import ScheduleScreen from '../screens/ScheduleScreen';
 import TasksScreen from '../screens/TasksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const ScheduleStack = createStackNavigator({
+  Schedule: ScheduleScreen,
 });
 
-HomeStack.navigationOptions = {
+ScheduleStack.navigationOptions = {
   tabBarLabel: 'Schedule',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -54,7 +54,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  ScheduleStack,
   TasksStack,
   SettingsStack,
 });

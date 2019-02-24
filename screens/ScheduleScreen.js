@@ -7,19 +7,40 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput
 } from 'react-native';
-import { WebBrowser } from 'expo';
+/*import { WebBrowser } from 'expo';*/
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+export default class ScheduleScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
   static navigationOptions = {
     header: null,
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', padding: 100}}>
+
+        <TextInput
+          style={{width: '100%',textAlign: 'center', backgroundColor: 'powderblue'}}
+          placeholder="stuff"
+          onChangeText={(text) => this.setState({text})}
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {this.state.text.split(' ').map((word) => word && 'yeet').join(' ')}
+        </Text>
+
+      </View>
+    );
+  }
+}
+
+    /*  <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
@@ -186,3 +207,4 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+*/

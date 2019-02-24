@@ -17,7 +17,7 @@ AddTaskStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-calendar${focused ? '' : '-outline'}`
+          ? `ios-calendar${focused ? ' ' : '-outline'}
           : 'md-calendar'
         Platform.OS === 'ios' ? 'ios-calendar': 'md-calendar'
       }

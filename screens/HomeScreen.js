@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#80c1f7',
+    backgroundColor: '#fff',
   },
   scrollcontainer: {
     flex:1,

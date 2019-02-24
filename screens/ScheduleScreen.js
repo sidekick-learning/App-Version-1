@@ -19,7 +19,7 @@ export default class ScheduleScreen extends React.Component {
     this.state = {text: ''};
   }
   static navigationOptions = {
-    header: null,
+    title: 'Schedule',
   };
 
   render() {

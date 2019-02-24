@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
+  TextInput,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,7 +8,7 @@ import {
   View,
   TextInput
 } from 'react-native';
-/*import { WebBrowser } from 'expo';*/
+
 
 import { MonoText } from '../components/StyledText';
 
@@ -24,6 +23,20 @@ export default class AddTaskScreen extends React.Component {
 
   render() {
     return (
+      <View style={styles.container}>
+      <ScrollView style = {styles.scrollcontainer}>
+      <TextInput
+      style={styles.textInput}
+      placeholder='Write a Task to add'
+      placeholderTextColor='white'
+      underlineColorAndroid='transparent'>
+      </TextInput>
+      </ScrollView>
+      <View style={styles.footer}>
+      </View>
+      <TouchableOpacity style={styles.addButton}>
+       <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
       <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', padding: 100}}>
 
         <TextInput
@@ -84,127 +97,47 @@ export default class AddTaskScreen extends React.Component {
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#80c1f7',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  scrollcontainer: {
+    flex:1,
+    marginBottom:100,
   },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
+  footer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
+    zIndex: 10,
+  },
+  textInput:{
+      alignSelf: 'stretch',
+      color: '#fff',
+      padding: 20,
+      backgroundColor: '#252525',
+      borderTopWidth: 2,
+      borderTopColor: '#ededed',
+    },
+  addButton:{
+    marginBottom:25,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:15,
+    marginRight:15,
+    backgroundColor: '#ff7034',
+    borderRadius: 10,
     alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#fff'
   },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  addButtonText: {
+    color:'#fff',
+    fontSize: 24,
   },
 });
 */

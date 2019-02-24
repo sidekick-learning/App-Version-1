@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import Note from '../components/Note ';
+import Note from '../components/Note';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {

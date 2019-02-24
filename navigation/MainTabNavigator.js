@@ -16,9 +16,6 @@ AddTaskStack.navigationOptions = {
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-calendar${focused ? ' ' : '-outline'}
-          : 'md-calendar'
         Platform.OS === 'ios' ? 'ios-calendar': 'md-calendar'
       }
     />
@@ -30,7 +27,6 @@ const TasksStack = createStackNavigator({
 });
 
 TasksStack.navigationOptions = {
-AddTaskStack.navigationOptions = {
 
   tabBarLabel: 'Progress',
 

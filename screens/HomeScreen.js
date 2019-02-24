@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-
+import Note from '../components/Note ';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -16,24 +16,56 @@ export default class HomeScreen extends React.Component {
     title: 'Schedule',
   };
 
+  constructor(props){
+    super(props);
+    this.state = {
+      noteArray: [],
+      noteText: '',
+    }
+  }
+
   render() {
+    let notes = this.state.noteArray.map((val,key)=>{
+      return <Note key={key} keyval={key} val={val}
+              deleteMethod={()=> this.deleteNote(key)} />
+    });
     return (
       <View style={styles.container}>
       <ScrollView style = {styles.scrollcontainer}>
       <TextInput
       style={styles.textInput}
+      onChangeText={(noteText)=> this.setState({noteText})}
+      value={this.state.noteText}
       placeholder='Write a Task to add'
       placeholderTextColor='white'
       underlineColorAndroid='transparent'>
       </TextInput>
+      {notes}
       </ScrollView>
       <View style={styles.footer}>
       </View>
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity onPress={this.addNote.bind(this)} style={styles.addButton}>
        <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
       </View>
     );
+  }
+  addNote(){
+    if(this.state.noteText){
+      var d = new Date();
+      this.state.noteArray.push({
+        'date': d.getFullYear()+
+        "/"+(d.getMonth()+1)+
+        "/"+ d.getDate(),
+        'note': this.state.noteText
+      });
+      this.setState({noteArray: this.state.noteArray})
+      this.setState({noteText:''});
+    }
+  }
+  deleteNote(key){
+    this.state.noteArray.splice(key,1);
+    this.setState({noteArray: this.state.noteArray})
   }
 }
 const styles = StyleSheet.create({

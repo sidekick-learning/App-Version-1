@@ -12,7 +12,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/SideKickIcon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/SideKickIcon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

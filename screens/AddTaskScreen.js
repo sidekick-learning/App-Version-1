@@ -13,13 +13,13 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default class ScheduleScreen extends React.Component {
+export default class AddTaskScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {text: ''};
   }
   static navigationOptions = {
-    title: 'Schedule',
+    title: 'Add a Task',
   };
 
   render() {

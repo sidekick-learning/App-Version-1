@@ -3,16 +3,15 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
 import TabBarIcon from '../components/TabBarIcon';
-import ScheduleScreen from '../screens/ScheduleScreen';
+import AddTaskScreen from '../screens/AddTaskScreen';
 import TasksScreen from '../screens/TasksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 
-const ScheduleStack = createStackNavigator({
-  Schedule: ScheduleScreen,
+const AddTaskStack = createStackNavigator({
+  AddTask: AddTaskScreen,
 });
 
-ScheduleStack.navigationOptions = {
-  tabBarLabel: 'Schedule',
+AddTaskStack.navigationOptions = {
+  tabBarLabel: 'Add a Task',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -31,7 +30,7 @@ const TasksStack = createStackNavigator({
 });
 
 TasksStack.navigationOptions = {
-LinksStack.navigationOptions = {
+AddTaskStack.navigationOptions = {
 
   tabBarLabel: 'Progress',
 
@@ -40,7 +39,6 @@ LinksStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-
       name={Platform.OS === 'ios' ? 'ios-link' : 'md-checkbox'}
       name={Platform.OS === 'ios' ? 'ios-clipboard' : 'md-clipboard'}
 
@@ -48,22 +46,8 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'prioritizer',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-list-box' : 'md-list-box'}
-    />
-  ),
-};
 
 export default createBottomTabNavigator({
-  ScheduleStack,
+  AddTaskStack,
   TasksStack,
-  SettingsStack,
 });

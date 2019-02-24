@@ -28,7 +28,11 @@ const LinksStack = createStackNavigator({
 });
 
 LinksStack.navigationOptions = {
+
   tabBarLabel: 'Progress',
+=======
+  tabBarLabel: 'Tasks',
+
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

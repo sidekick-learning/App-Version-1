@@ -56,7 +56,10 @@ export default class HomeScreen extends React.Component {
       this.state.noteArray.push({
         'date': d.getFullYear()+
         "/"+(d.getMonth()+1)+
-        "/"+ d.getDate(),
+        "/"+ d.getDate()+
+        "/"+ d.getHours()+
+        ":"+ d.getMinutes()+
+        ":"+ d.getSeconds(),
         'note': this.state.noteText
       });
       this.setState({noteArray: this.state.noteArray})

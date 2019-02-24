@@ -5,13 +5,17 @@ export default class Thing extends Component{
 	constructor(){
 		super();
 		this.state = {
-			name: 'go fuck urself',
+			name: 'fuuuuuuuck',
 			showName: false,
 		}
 	}
 
 	changeState(){
-		this.setState({showName: true})
+		const newState = {
+			showName: true,
+			name: 'blaaaahhhhh',
+		}
+		this.setState(newState);
 	}
 
 	render(){

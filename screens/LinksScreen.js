@@ -7,9 +7,18 @@ import Thing from '../components/thing';
 
 export default class DustinsScreen extends React.Component {
 
-_onPressButton() {
-  Alert.alert('yo')
-  Thing.changeState()
+  constructor(){
+    super();
+    this.state = {
+      onScreenText: "old"
+    }
+  }
+
+_onPressButton = ()  => {
+  Alert.alert('hi')
+  this.setState({
+    onScreenText: 'new'
+  })
   }
 
   render() {
@@ -22,7 +31,7 @@ _onPressButton() {
     />
 
       <View style={styles.container}>
-        <Thing message = 'shit'/>
+        <Thing message ={ this.state.onScreenText}/>
       </View>
     </View>
     );

@@ -4,15 +4,16 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer, cre
 import Icon from '@expo/vector-icons/Ionicons';
 
 import TabBarIcon from '../components/TabBarIcon';
-import AddTaskScreen from '../screens/AddTaskScreen';
-import TasksScreen from '../screens/TasksScreen';
+import HomeScreen from '../screens/HomeScreen';
+import ProgressScreen from '../screens/ProgressScreen';
+import PrioritizerScreen from '../screens/PrioritizerScreen';
 
-const AddTaskStack = createStackNavigator({
-  AddTask: AddTaskScreen,
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
 });
 
-AddTaskStack.navigationOptions = {
-  tabBarLabel: 'Add a Task',
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Schedule',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -23,33 +24,36 @@ AddTaskStack.navigationOptions = {
   ),
 };
 
-const TasksStack = createStackNavigator({
-  Tasks: TasksScreen,
+const ProgressStack = createStackNavigator({
+  Links: ProgressScreen,
 });
 
-<<<<<<< HEAD
-LinksStack.navigationOptions = {
+ProgressStack.navigationOptions = {
   tabBarLabel: 'Progress',
-=======
-TasksStack.navigationOptions = {
-
-  tabBarLabel: 'Progress',
-
-  tabBarLabel: 'Tasks',
-
->>>>>>> 474d3227e00b7463ef6ef1eae29a58333a8762d0
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-checkbox'}
       name={Platform.OS === 'ios' ? 'ios-clipboard' : 'md-clipboard'}
-
     />
   ),
 };
 
+const PrioritizerStack = createStackNavigator({
+  Settings: PrioritizerScreen,
+});
+
+PrioritizerStack.navigationOptions = {
+  tabBarLabel: 'prioritizer',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-list-box' : 'md-list-box'}
+    />
+  ),
+};
 
 export default createBottomTabNavigator({
-  AddTaskStack,
-  TasksStack,
+  HomeStack,
+  ProgressStack,
+  PrioritizerStack,
 });

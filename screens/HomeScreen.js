@@ -64,6 +64,7 @@ export default class HomeScreen extends React.Component {
       });
       this.setState({noteArray: this.state.noteArray})
       this.setState({noteText:''});
+
     }
   }
   deleteNote(key){
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 10,
+    zIndex: 0,
   },
   textInput:{
       alignSelf: 'stretch',
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
   addButton:{
     marginBottom:25,
-    paddingTop:15,
+    paddingTop:5,
     paddingBottom:15,
     marginLeft:15,
     marginRight:15,

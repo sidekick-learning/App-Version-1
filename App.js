@@ -3,12 +3,14 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import { isLoading } from 'expo-font';
+import { authorize } from 'react-native-app-auth'
+
+//This file creates to overall app object and renders the loading splash screen
+//then it calls AppNavigator which handles authentication
 
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
-    // data: null,
-    // error: null
   };
 
 

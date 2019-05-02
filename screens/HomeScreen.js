@@ -11,209 +11,94 @@ import {
 
 import Task from '../components/Task';
 import { MonoText } from '../components/StyledText';
+import Canvas from '../Canvas'
 
 export default class HomeScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Canvas Tasks',
+  };
+
+  //function to get an oauth token, broken code that isn't used
+  async _authorize () {
+    try {
+      //this returns an object result that contains an access token
+      const result = await authorize(config);
+    } catch (error){
+      console.log('error', error)
+    }
+  }
+  
   constructor(props){
     super(props);
+    this.callCanvas = this.callCanvas.bind(this);
 
-
-//state contains the assignments that we want to display for the user
     this.state = {
-      // notes: [
-      //   {
-      //     id: 1,
-      //     title: 'homework',
-      //     due_date: '4/22',
-      //     class: 'calculus',
-      //   },
-      //   {
-      //     id: 2,
-      //     title: 'other homework',
-      //     due_date: '4/21',
-      //     class: 'physics',
-      //   },
-      //   {
-      //     id: 3,
-      //     title: 'project',
-      //     due_date: '4/20',
-      //     class: 'physics',
-      //   }
-      // ] 
-
       data: null,
       error: null,
       loading: false
     }
-}
-
-
-  //below are the functions that make API calls for our app
-  //baseURL = 'https://jsonplaceholder.typicode.com/';
-
-  getData = (ev)=>{
-    this.setState({loading: true})
-    this.setState({error: null});
-    let url = 'https://canvas.colorado.edu/api/v1/courses/25348/assignments'
-    let h = new Headers();
-    h.append('Authorization', 'Bearer 10772~lxqwLkPIT4rV8vd4RhvH9E1HBBpCXIpvSOfWMR7OxcKIVZQT4MCuzpO4apAkk77p');
-    h.append('per_page', 5)
-    
-    let req = new Request(url, {
-      headers: h,
-      method: 'GET'
-    });
-    
-    fetch(req)
-    .then(response => response.json())
-    .then(this.showData)
-    .catch(this.badStuff);
-
   }
 
-  showData = (data)=>{
-    this.setState({data: data});
-    tasks = this.state.data.map((val, key)=>{
-      return <Task key={key} keyval={key} val={val}/>});
-    console.log(data);  
-    this.setState({loading: false});
-  }
+    //functions for calling the Canvas API 
+    callCanvas(){
 
-  badStuff = (err)  => {
-    this.setState({error: err.message});
-  }
+      this.setState({loading: true});
+      this.setState({error: null});
+      
+      //currently just pulling dustins EDL assignments for testing
+      //the course ID after ...courses/ can be modified to pull assignments from whatever course
+      let url = 'https://canvas.colorado.edu/api/v1/courses/25348/assignments';
+      let h = new Headers();
 
+      //add our access token to the header as authorization, this is part of oauth2
+      //h.append('Authorization', this.result.accessToken);
+
+      //this is a manually generated token for testing (this can be downloaded from canvas profile -> settings)
+      h.append('Authorization', 'Bearer 10772~lxqwLkPIT4rV8vd4RhvH9E1HBBpCXIpvSOfWMR7OxcKIVZQT4MCuzpO4apAkk77p');
+      h.append('per_page', 5);
+      
+      let req = new Request(url, {
+        headers: h,
+        method: 'GET'
+      });
+      fetch(req)
+      .then(response => response.json())
+      .then(this.showData)
+      .catch(this.errors);
+    }
+
+    showData = (data) => {
+      this.setState({data: data});
+      //console.log(data);
+      
+    }
+
+    errors = (err) => {
+      this.setState({error: err.message});
+    }
   
+  
+  componentDidMount(){
+    this.callCanvas();
+  }
+
   render(){
-
-    this.getData();
-
-    console.log('loading')
-
-    while(this.state.loading){};
-
-    console.log('loaded');
-
-
     return(
-      <View>
-
-        <Button title="call api"
-          onPress={this.getData} />
-        
+      <ScrollView>
         { this.state.error && (
             <Text>
             {this.state.error}
             </Text>
         )}
-
-        {/* {this.state.data && this.state.data.length > 0 && (
-          this.state.data.map(assignment => (
-            <Text key={assignment.id}>
-              {assignment.name}
-            </Text>
-          ))
-        )} */}
-        {tasks}
-      </View>
+        {(this.state.data || []).filter(assignment => !!assignment).map((assignment, index)=>{
+            return <Task assignment = {assignment} key = {index}/>})}
+      </ScrollView>
     );
   }
-
-
-  //function to sort tasks based on due date
-  // sortTasks(){
-  //   var sorted = [];
-  //   for(var task in this.notes){
-  //     sorted.push([task, this.notes[task]]);
-  //   }
-
-  //   sorted.sort(function(a,b){
-  //     return this.a[1] - this.b[1];
-  //   });
-  // }
-
 }
 
-//OLD STUFF
 
-
-//   static navigationOptions = {
-//     title: 'Tasks',
-//   };
-
-//   constructor(props){
-//     super(props);
-//     state = {
-//       notes: [
-//         {
-//           id: 1,
-//           title: 'homework',
-//           due_date: '4/20',
-//           class: 'calculus',
-//         },
-//         {
-//           id: 2,
-//           title: 'other homework',
-//           due_date: '4/21',
-//           class: 'physics',
-//         }
-//       ] 
-//     }
-//   }
-
-
-
-//   render() {
-//     let notes = this.state.map((key)=>{
-//       return <Note key={key} />
-//               //deleteMethod={()=> this.deleteNote(key)} />
-//     });
-   
-//     return (
-//       <View style={styles.container}>
-//         <ScrollView style = {styles.scrollcontainer}>
-//           {notes}
-//         </ScrollView>
-      
-
-
-//       {/* <TextInput
-//       style={styles.textInput}
-//       onChangeText={(noteText)=> this.setState({noteText})}
-//       value={this.state.noteText}
-//       placeholder='Write a Task to add'
-//       placeholderTextColor='white'
-//       underlineColorAndroid='transparent'>
-//       </TextInput> */}
-
-//       <View style={styles.footer}>
-//       </View>
-
-//       {/* <TouchableOpacity onPress={this.addNote.bind(this)} style={styles.addButton}>
-//        <Text style={styles.addButtonText}>+</Text>
-//       </TouchableOpacity>
-//       <TouchableOpacity onPress={this.addNote.bind(this)} style={styles.addButton}>
-//        <Text style={styles.addButtonText}>+</Text>
-//       </TouchableOpacity> */}
-//       </View>
-//     );
-//   }
-
-//   /*getDataJSON(){
-//     var assignment = 
-//   }*/
-
-//   addNote(){
-//     this.state.noteArray.push({'note': this.state.noteText})
-//     this.setState({noteArray: this.state.noteArray})
-//     this.setState({noteText: this.placeholder});
-//   }
-
-//   deleteNote(key){
-//     this.state.noteArray.splice(key,1);
-//     this.setState({noteArray: this.state.noteArray})
-//   }
-// }
 const styles = StyleSheet.create({
   container: {
     flex: 1,

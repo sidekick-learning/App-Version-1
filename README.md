@@ -11,4 +11,6 @@ disabled as of 12:00 on May 2nd (its scoped to my Canvas account).
 
 How to Run
 
-Download
+1. Download repository and unzip into a project directory.
+
+2. 

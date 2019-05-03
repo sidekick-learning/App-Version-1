@@ -19,7 +19,9 @@ How to Run
   
   More Info can be found Here: https://docs.expo.io/versions/v31.0.0/workflow/up-and-running/
   
-3. Install an expo client to run the app on. This could either be the expo client mobile app available on app stores or an emulator (I used a Pixel 2 emulator in Android Studio)
+  Note: on Windows 10, I had to run `npm i expo-cli` from the project directory, otherwise npm could not find expo executables (even after setting correct path variables on PC)
+  
+3. Install an expo client to run the app on. This could either be the expo client mobile app available on app stores or an emulator (I used a Pixel 2 emulator in Android Studio, go to tools->avd manager to set one up)
 
 4. Command `npm start` to start a local server on your machine that serves the expo client the app.
 
